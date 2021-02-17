@@ -1,7 +1,6 @@
 import React from "react";
 
 const ModalItem = (props) => {
-  console.log(props, "modalprops");
   let product = props.value;
   return (
     <div>

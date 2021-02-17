@@ -11,22 +11,19 @@ import ModalItem from "../components/ModalItem";
 import ListItem from "../components/ListItem";
 class Cart extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       item: null,
     };
   }
   openModal = (item) => {
-    console.log(item);
     this.setState({ item });
   };
   closeModal = () => {
     this.setState({ item: null });
   };
-  change = (e, i) => {
-    debugger;
-    let newItem = i;
+  change = (e, item) => {
+    let newItem = item;
     newItem.rate = e.target.value;
     this.setState({ item: newItem });
   };

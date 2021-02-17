@@ -24,13 +24,11 @@ class ListItem extends Component {
 
 
     add(e) {
-        debugger;
         e.target.classList.add("checked");
         this.props.addToCart(this.state.product);
     }
 
     remove(e) {
-        debugger;
         e.target.classList.remove("checked");
         this.props.removeFromCart(this.state.product)
     }

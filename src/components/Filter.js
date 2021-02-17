@@ -3,6 +3,25 @@ import { connect } from "react-redux";
 import { filterProducts } from "../actions/productActions";
 
 class Filter extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedfood: ''
+    }
+    this.filterChanged = this.filterChanged.bind(this);
+  }
+
+  handleSubmit() {
+    this.props.filterProducts(this.state.selectedfood, 0)
+  }
+
+  filterChanged(e) {
+    this.setState({
+      selectedfood: e.target.value
+    });
+  }
+
   render() {
     return !this.props.filteredProducts ? (
       <div>Loading...</div>
@@ -10,17 +29,8 @@ class Filter extends Component {
         <div className="filter">
           <div className="filter-food">
             Food Pairing{" "}
-            <input id="food"
-              value={this.props.selectedfood}
-              onKeyDown={(e) => {
-                var keycode = e.keyCode || e.which;
-                if (keycode === '13') this.props.filterProducts(this.props.products, e.target.value, 0)
-              }}
-              onBlur={(e) => {
-                this.props.filterProducts(this.props.products, e.target.value, 0)
-              }
-              }
-            />
+            <input id="food" value={this.props.selectedfood} onBlur={(e) => { this.filterChanged(e) }} />
+            <button className={"fa fa-search"} id="food" onClick={(e) => { this.handleSubmit(e) }}></button>
           </div>
           <div className="filter-result">
             {this.props.filteredProducts.length} Products

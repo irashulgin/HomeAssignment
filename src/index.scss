@@ -187,12 +187,22 @@ select#rank {
 	}
 }
 .button.primary {
-	background-color: #f0c040;
+	background-color: #291d69;
 }
 .filter-food {
 	input {
 		margin-left: 1%;
+		margin-right: 1%;
 		border: 1px solid rgb(58, 57, 57);
+		border-radius: 5px;
+	}
+	button {
+		color: white;
+		border: none;
+		padding: 12px;
+		background-color: #6189b0;
+		cursor: pointer;
+		outline: inherit;
 		border-radius: 5px;
 	}
 }

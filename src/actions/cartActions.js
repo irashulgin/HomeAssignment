@@ -3,7 +3,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART, SET_RANK } from "../types";
 export const addToCart = (product) => (dispatch, getState) => {
   let cartItems = getState().cart.cartItems.slice();
   let alreadyExists = false;
-  debugger;
   cartItems.forEach((x) => {
     if (x !== null & x.id === product.id) {
       alreadyExists = true;
@@ -38,7 +37,6 @@ export const removeFromCartAll = (product) => (dispatch, getState) => {
 };
 
 export const setRank = (product) => (dispatch, getState) => {
-  debugger;
   let cartItems = getState().cart.cartItems.slice();
   dispatch({
     type: SET_RANK,

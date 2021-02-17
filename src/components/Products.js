@@ -13,8 +13,6 @@ import ReactPaginate from 'react-paginate';
 class Products extends Component {
   constructor(props) {
     super(props);
-    console.log('constructor');
-    debugger;
     this.state = {
       product: null,
       currentPage: 0,
@@ -22,7 +20,6 @@ class Products extends Component {
     };
   }
   handlePageClick = (e) => {
-    debugger;
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
     let filter = document.getElementById("food").value;
@@ -32,9 +29,8 @@ class Products extends Component {
         this.props.fetchProducts(this.state.currentPage);
       };
     } else {
-      debugger;
       cb = () => {
-        this.props.filterProducts(this.props.products, filter, this.state.currentPage);
+        this.props.filterProducts(filter, this.state.currentPage);
       }
     };
     this.setState({
@@ -44,12 +40,12 @@ class Products extends Component {
     );
 
   };
+
   componentDidMount(error, info) {
-    debugger;
-    console.log("PAGE", this.state.currentPage);
     let page = 0;
     this.props.fetchProducts(page);
   }
+
   openModal = (product) => {
     this.setState({ product });
   };
@@ -65,7 +61,7 @@ class Products extends Component {
             <div>Loading...</div>
           ) : (
               <ul className="products">
-                {this.props.products && this.props.products.map((product) => (
+                {this.props.products && this.props.products.length > 0 && this.props.products.map((product) => (
                   <li key={product.id}>
                     <ErrorBoundary>
                       <ListItem key={product.id}
@@ -78,6 +74,11 @@ class Products extends Component {
                     </ErrorBoundary>
                   </li>
                 ))}
+                {(this.props.products && this.props.products.length === 0) ? (
+                  <h1>No data</h1>
+                ) : (
+                    <></>
+                  )}
               </ul>
             )}
         </Fade>
@@ -92,21 +93,25 @@ class Products extends Component {
             </Modal>
           </ErrorBoundary>
         )}
-        <div>
-          {this.state.postData}
-          <ErrorBoundary> <ReactPaginate
-            previousLabel={"prev"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"} />
-          </ErrorBoundary>
-        </div>
+        {(this.props.products && this.props.products.length === 0) ? (
+          <h1> </h1>
+        ) : (
+            <div>
+              {this.state.postData}
+              <ErrorBoundary> <ReactPaginate
+                previousLabel={"prev"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageClick}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"} />
+              </ErrorBoundary>
+            </div>
+          )}
       </div>
     );
   }
