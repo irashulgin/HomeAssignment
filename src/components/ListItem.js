@@ -52,10 +52,10 @@ class ListItem extends Component {
                     </div>
                 ) : <div></div>
                 }
-                <a onClick={() => this.props.openModal(product)}>
+                <div onClick={() => this.props.openModal(product)}>
                     <img src={product.image_url} alt={product.name}></img>
                     <p>{product.name}</p>
-                </a>
+                </div>
                 <button
                     onClick={(e) => {
                         !e.target.classList.contains("checked") ?
@@ -65,7 +65,7 @@ class ListItem extends Component {
                     }
                     }
                     className={
-                        this.props.cartItems.find(x => { return x.id == product.id }) ? "fa fa-star checked" : "fa fa-star"
+                        this.props.cartItems.find(x => { return x.id === product.id }) ? "fa fa-star checked" : "fa fa-star"
                     }
                 >
                 </button>
