@@ -1,5 +1,5 @@
 {
-  "name": "react-shopping-cart",
+  "name": "react-beers-cart",
   "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +9,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
