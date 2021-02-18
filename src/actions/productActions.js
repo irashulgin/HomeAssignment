@@ -1,5 +1,6 @@
 import { FETCH_PRODUCTS } from "../types";
 import { FILTER_PRODUCTS_BY_FOOD } from "../types";
+
 export const fetchProducts = (page) => async (dispatch) => {
   try {
     const res = await fetch(`https://api.punkapi.com/v2/beers?page=${page + 1}&per_page=12`);
